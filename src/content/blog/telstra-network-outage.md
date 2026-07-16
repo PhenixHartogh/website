@@ -3,8 +3,6 @@ title: "Telstra's Network Outage: What Happened and Why It Mattered"
 pubDate: 2026-07-16
 summary: "Brief summary of the post."
 ---
-# [Telstra](https://www.telstra.com.au/connected/news/a-message-from-our-ceo)'s July 2026 Network Outage: What Happened and Why It Mattered
-
 On **July 8, 2026**, Australia's largest telecommunications provider, Telstra, suffered a nationwide network outage that disrupted mobile and internet services for millions of customers. The outage lasted several hours and had cascading effects across transport, emergency services, and payment systems.
 
 ## The Cause: A Software Time-Keeping Failure
