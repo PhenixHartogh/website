@@ -1,0 +1,55 @@
+---
+import SocialIcons from './SocialIcons.astro';
+---
+
+<header>
+  <nav>
+    <a href="/" class="logo">nixie</a>
+    <div class="nav-links">
+      <a href="/blog">blog</a>
+      <a href="/contact">contact</a>
+      <a href="/pgp">pgp</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    border-bottom: 1px solid #1a1a1a;
+    padding: 1.5rem 0;
+    margin-bottom: 3rem;
+  }
+  nav {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-family: "JetBrains Mono", "Fira Code", "SF Mono", "Cascadia Code", ui-monospace, monospace;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #00e676;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .logo:hover {
+    color: #00e676;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .nav-links a {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: "JetBrains Mono", "Fira Code", "SF Mono", "Cascadia Code", ui-monospace, monospace;
+  }
+  .nav-links a:hover {
+    color: #e0e0e0;
+  }
+</style>

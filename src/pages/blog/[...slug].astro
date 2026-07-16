@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.summary}
+>
+  <article>
+    <header class="post-header">
+      <a href="/blog" class="back-link">&larr; blog</a>
+      <h1>{post.data.title}</h1>
+      <time class="post-date">
+        {post.data.pubDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}
+      </time>
+    </header>
+    <div class="post-content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: #888;
+    font-size: 0.85rem;
+  }
+  .back-link:hover {
+    color: #00e676;
+  }
+  .post-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+  .post-date {
+    color: #555;
+    font-size: 0.85rem;
+  }
+  .post-content {
+    line-height: 1.8;
+  }
+  .post-content :global(h2) {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .post-content :global(h3) {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+  .post-content :global(li) {
+    margin-bottom: 0.4rem;
+  }
+  .post-content :global(blockquote) {
+    border-left: 3px solid #00e676;
+    padding: 0.5rem 1rem;
+    margin: 1.5rem 0;
+    color: #888;
+    background: #111;
+    border-radius: 0 4px 4px 0;
+  }
+  .post-content :global(a) {
+    color: #00e676;
+  }
+</style>

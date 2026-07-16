@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Nix Hartogh"
+>
+  <h1>Contact</h1>
+  <p class="intro">Have a question or want to connect? Drop a message below.</p>
+
+  <div class="form-wrapper">
+    <iframe
+      id="JotFormIFrame-261952882624062"
+      title="Contact Form"
+      onload="window.parent.scrollTo(0,0)"
+      allowtransparency="true"
+      allow="geolocation; microphone; camera; fullscreen; payment"
+      src="https://form.jotform.com/261952882624062"
+      frameborder="0"
+      style="min-width:100%;max-width:100%;height:539px;border:none;"
+      scrolling="no"
+    >
+    </iframe>
+  </div>
+</BaseLayout>
+
+<script>
+  const script = document.createElement('script');
+  script.src = 'https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js';
+  script.onload = () => {
+    (window as any).jotformEmbedHandler(
+      "iframe id='JotFormIFrame-261952882624062'",
+      "https://form.jotform.com/"
+    );
+  };
+  document.body.appendChild(script);
+</script>
+
+<style>
+  .intro {
+    color: #888;
+    margin-bottom: 1.5rem;
+  }
+  .form-wrapper {
+    width: 100%;
+    margin: 1rem 0;
+  }
+</style>
