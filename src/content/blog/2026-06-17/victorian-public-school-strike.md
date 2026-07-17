@@ -1,7 +1,7 @@
 ---
 title: "Victorian Public School Teachers to Strike Thursday July 23 — What You Need to Know"
 pubDate: 2026-07-17
-summary: "Brief summary of the post."
+summary: "Victorian public school teachers, principals, and education support staff will walk off the job for 24 hours this Thursday, July 23, in a statewide strike that will affect hundreds of government schools across Victoria."
 ---
 Victorian public school teachers, principals, and education support staff will walk off the job for 24 hours this Thursday, July 23, in a statewide strike that will affect hundreds of government schools across Victoria.
 
