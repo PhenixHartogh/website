@@ -2,42 +2,36 @@
 const uploadOptions = [
   {
     name: "WeTransfer",
-    description: "Upload your file using WeTransfer.",
     url: "https://we.tl/r-FZfwk9GSphyYNpqJ",
     logo: "https://images.seeklogo.com/logo-png/31/2/wetransfer-logo-png_seeklogo-317882.png",
     className: "wetransfer",
   },
   {
     name: "Nextcloud",
-    description: "Upload your file using Nextcloud.",
     url: "https://aio.nixie.online/index.php/s/QG4qwipkgAYfxj2",
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6Alcd3Sx0f8CrwrZh_As5TOSZvz-cfKUtn6P0va4iC4ONznBQx7HxnRnh&s=10",
     className: "nextcloud",
   },
   {
     name: "MEGA",
-    description: "Upload your file using MEGA.",
     url: "https://mega.nz/filerequest/jawd3rmaMHE",
     logo: "https://mega.io/wp-content/uploads/logo-mega.png",
     className: "mega",
   },
   {
     name: "Dropbox",
-    description: "Upload your file using Dropbox.",
     url: "https://www.dropbox.com/request/8yqjjwdxefop9irj2fai",
     logo: "https://cdn.simpleicons.org/dropbox/0061FF",
     className: "dropbox",
   },
   {
     name: "Google",
-    description: "Upload your file using Google.",
     url: "https://forms.gle/v6W7co2ZcEgZpv376",
     logo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/960px-Google_Drive_icon_%282020%29.svg.png",
     className: "google",
   },
   {
-    name: "Microsoft SharePoint",
-    description: "Upload your file using Microsoft SharePoint.",
+    name: "SharePoint",
     url: "https://mooroolbarkcollege-my.sharepoint.com/:f:/g/personal/har0208_mooroolbarkcollege_vic_edu_au/IgCYHmZxyf3qS6Uw1Qa0L1HAATpwzqNiiKV3F-jTLwNpNLM",
     logo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/Microsoft_Office_SharePoint_%282019–2025%29.svg/1280px-Microsoft_Office_SharePoint_%282019–2025%29.svg.png",
     className: "sharepoint",
@@ -75,27 +69,39 @@ const uploadOptions = [
           sans-serif;
 
         --background: #f5f5f7;
-        --card: rgba(255, 255, 255, 0.84);
+
+        --card: rgba(255, 255, 255, 0.82);
         --card-hover: rgba(255, 255, 255, 0.98);
 
         --text: #1d1d1f;
         --muted: #6e6e73;
-        --border: rgba(0, 0, 0, 0.09);
 
+        --border: rgba(0, 0, 0, 0.08);
         --shadow: rgba(0, 0, 0, 0.08);
+
+        --privacy-background: rgba(255, 255, 255, 0.7);
+        --privacy-icon-background: rgba(0, 122, 255, 0.1);
+
+        --accent: #007aff;
       }
 
       @media (prefers-color-scheme: dark) {
         :root {
           --background: #0c0c0e;
+
           --card: rgba(29, 29, 31, 0.82);
-          --card-hover: rgba(40, 40, 43, 0.96);
+          --card-hover: rgba(42, 42, 45, 0.97);
 
           --text: #f5f5f7;
           --muted: #a1a1a6;
-          --border: rgba(255, 255, 255, 0.1);
 
+          --border: rgba(255, 255, 255, 0.1);
           --shadow: rgba(0, 0, 0, 0.4);
+
+          --privacy-background: rgba(29, 29, 31, 0.7);
+          --privacy-icon-background: rgba(10, 132, 255, 0.15);
+
+          --accent: #0a84ff;
         }
       }
 
@@ -116,13 +122,13 @@ const uploadOptions = [
         align-items: center;
         justify-content: center;
 
-        padding: 40px 20px;
+        padding: 48px 20px;
 
         background:
           radial-gradient(
-            circle at 50% -20%,
-            rgba(0, 113, 227, 0.13),
-            transparent 45%
+            circle at 50% -10%,
+            rgba(0, 113, 227, 0.14),
+            transparent 40%
           ),
           var(--background);
 
@@ -131,7 +137,7 @@ const uploadOptions = [
 
       main {
         width: 100%;
-        max-width: 720px;
+        max-width: 680px;
       }
 
       /* --------------------
@@ -140,7 +146,7 @@ const uploadOptions = [
 
       header {
         text-align: center;
-        margin-bottom: 38px;
+        margin-bottom: 34px;
       }
 
       h1 {
@@ -155,7 +161,7 @@ const uploadOptions = [
       .subtitle {
         margin: 0 auto;
 
-        max-width: 520px;
+        max-width: 500px;
 
         color: var(--muted);
 
@@ -164,28 +170,146 @@ const uploadOptions = [
       }
 
       /* --------------------
-         UPLOAD OPTIONS
+         SQUARE SERVICE ICONS
       -------------------- */
 
       .options {
         display: grid;
-        gap: 15px;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 16px;
       }
 
       .option {
-        position: relative;
+        aspect-ratio: 1 / 1;
 
         display: flex;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
 
-        gap: 20px;
+        gap: 16px;
 
         padding: 20px;
 
         color: inherit;
         text-decoration: none;
 
+        text-align: center;
+
         background: var(--card);
+
+        border: 1px solid var(--border);
+        border-radius: 26px;
+
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+
+        box-shadow: 0 8px 30px var(--shadow);
+
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          box-shadow 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .option:hover {
+        transform: translateY(-5px) scale(1.015);
+
+        background: var(--card-hover);
+
+        box-shadow: 0 16px 38px var(--shadow);
+
+        border-color: rgba(128, 128, 128, 0.18);
+      }
+
+      .option:active {
+        transform: scale(0.97);
+      }
+
+      .option:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 4px;
+      }
+
+      /* --------------------
+         LOGOS
+      -------------------- */
+
+      .logo-container {
+        width: 84px;
+        height: 84px;
+
+        flex-shrink: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: white;
+
+        border-radius: 22px;
+
+        box-shadow:
+          0 4px 16px rgba(0, 0, 0, 0.08);
+      }
+
+      .logo-container img {
+        width: 52px;
+        height: 52px;
+
+        object-fit: contain;
+      }
+
+      .google .logo-container img {
+        width: 48px;
+        height: 48px;
+      }
+
+      .sharepoint .logo-container img {
+        width: 54px;
+        height: 54px;
+      }
+
+      .wetransfer .logo-container img {
+        width: 56px;
+        height: 56px;
+      }
+
+      /* --------------------
+         SERVICE NAME
+      -------------------- */
+
+      .option-name {
+        display: block;
+
+        width: 100%;
+
+        font-size: 1rem;
+        font-weight: 650;
+
+        line-height: 1.25;
+
+        letter-spacing: -0.015em;
+      }
+
+      /* --------------------
+         PRIVACY NOTICE
+      -------------------- */
+
+      .privacy-note {
+        margin-top: 28px;
+
+        display: flex;
+        align-items: flex-start;
+
+        gap: 15px;
+
+        padding: 20px;
+
+        background: var(--privacy-background);
 
         border: 1px solid var(--border);
         border-radius: 22px;
@@ -193,127 +317,59 @@ const uploadOptions = [
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);
 
-        box-shadow:
-          0 8px 30px var(--shadow);
-
-        transition:
-          transform 0.2s ease,
-          background 0.2s ease,
-          box-shadow 0.2s ease;
+        box-shadow: 0 8px 30px var(--shadow);
       }
 
-      .option:hover {
-        transform: translateY(-3px);
+      .privacy-icon {
+        width: 42px;
+        height: 42px;
 
-        background: var(--card-hover);
-
-        box-shadow:
-          0 14px 35px var(--shadow);
-      }
-
-      .option:active {
-        transform: scale(0.99);
-      }
-
-      .option:focus-visible {
-        outline: 3px solid #007aff;
-        outline-offset: 4px;
-      }
-
-      /* --------------------
-         LOGO
-      -------------------- */
-
-      .logo-container {
         flex-shrink: 0;
 
         display: flex;
         align-items: center;
         justify-content: center;
 
-        width: 64px;
-        height: 64px;
+        background: var(--privacy-icon-background);
 
-        border-radius: 17px;
+        border-radius: 13px;
 
-        background: white;
+        color: var(--accent);
+
+        font-size: 1.2rem;
       }
 
-      .logo-container img {
-        width: 36px;
-        height: 36px;
-
-        object-fit: contain;
-      }
-
-      .google .logo-container img {
-        width: 34px;
-        height: 34px;
-      }
-
-      .sharepoint .logo-container img {
-        width: 38px;
-        height: 38px;
-      }
-
-      /* --------------------
-         TEXT
-      -------------------- */
-
-      .option-content {
-        flex: 1;
+      .privacy-content {
         min-width: 0;
       }
 
-      .option-name {
+      .privacy-content strong {
         display: block;
 
         margin-bottom: 5px;
 
-        font-size: 1.14rem;
+        font-size: 0.98rem;
         font-weight: 650;
-
-        letter-spacing: -0.01em;
       }
 
-      .option-description {
-        display: block;
+      .privacy-content p {
+        margin: 0;
 
         color: var(--muted);
 
-        font-size: 0.93rem;
-        line-height: 1.4;
+        font-size: 0.88rem;
+        line-height: 1.55;
       }
 
-      /* --------------------
-         ARROW
-      -------------------- */
+      .privacy-content a {
+        color: var(--accent);
 
-      .arrow {
-        flex-shrink: 0;
-
-        width: 34px;
-        height: 34px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        border-radius: 50%;
-
-        color: var(--muted);
-
-        font-size: 1.5rem;
-
-        transition:
-          transform 0.2s ease,
-          background 0.2s ease;
+        font-weight: 600;
+        text-decoration: none;
       }
 
-      .option:hover .arrow {
-        transform: translateX(3px);
-
-        background: rgba(128, 128, 128, 0.12);
+      .privacy-content a:hover {
+        text-decoration: underline;
       }
 
       /* --------------------
@@ -321,107 +377,104 @@ const uploadOptions = [
       -------------------- */
 
       .notice {
-        margin-top: 28px;
+        margin: 24px 0 0;
 
         text-align: center;
 
         color: var(--muted);
 
-        font-size: 0.84rem;
+        font-size: 0.82rem;
         line-height: 1.5;
       }
 
       /* --------------------
-         MOBILE
+         TABLET / MOBILE
       -------------------- */
 
-      @media (max-width: 520px) {
+      @media (max-width: 620px) {
         body {
-          padding: 28px 14px;
+          padding: 32px 16px;
         }
 
         header {
           margin-bottom: 28px;
         }
 
+        .options {
+          grid-template-columns: repeat(2, 1fr);
+
+          gap: 13px;
+        }
+
         .option {
-          gap: 15px;
+          border-radius: 22px;
 
-          padding: 17px;
+          padding: 16px;
 
-          border-radius: 18px;
+          gap: 13px;
         }
 
         .logo-container {
-          width: 52px;
-          height: 52px;
+          width: 72px;
+          height: 72px;
 
-          border-radius: 14px;
+          border-radius: 19px;
         }
 
         .logo-container img {
-          width: 30px;
-          height: 30px;
+          width: 44px;
+          height: 44px;
+        }
+
+        .google .logo-container img {
+          width: 42px;
+          height: 42px;
         }
 
         .sharepoint .logo-container img {
-          width: 32px;
-          height: 32px;
+          width: 46px;
+          height: 46px;
+        }
+
+        .wetransfer .logo-container img {
+          width: 48px;
+          height: 48px;
         }
 
         .option-name {
-          font-size: 1.05rem;
-        }
-
-        .option-description {
-          font-size: 0.86rem;
-        }
-
-        .arrow {
-          width: 28px;
-          height: 28px;
+          font-size: 0.94rem;
         }
       }
 
-.privacy-note {
-  margin-top: 26px;
-  padding: 18px 20px;
+      @media (max-width: 360px) {
+        .options {
+          gap: 10px;
+        }
 
-  text-align: center;
+        .option {
+          padding: 12px;
+        }
 
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
+        .logo-container {
+          width: 62px;
+          height: 62px;
 
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+          border-radius: 17px;
+        }
 
-  box-shadow: 0 8px 30px var(--shadow);
-}
+        .logo-container img {
+          width: 38px;
+          height: 38px;
+        }
 
-.privacy-note strong {
-  display: block;
-  margin-bottom: 6px;
+        .option-name {
+          font-size: 0.88rem;
+        }
 
-  font-size: 0.98rem;
-}
-
-.privacy-note span {
-  color: var(--muted);
-
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.privacy-note a {
-  color: #007aff;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.privacy-note a:hover {
-  text-decoration: underline;
-}
+        .privacy-note {
+          padding: 16px;
+        }
+      }
     </style>
   </head>
 
@@ -431,7 +484,7 @@ const uploadOptions = [
         <h1>Send a File to Nix Hartogh</h1>
 
         <p class="subtitle">
-          Choose a service below to securely send me a file.
+          Choose a service below to send me your file.
         </p>
       </header>
 
@@ -443,54 +496,55 @@ const uploadOptions = [
               href={option.url}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Send a file using ${option.name}`}
             >
               <div class="logo-container">
                 <img
                   src={option.logo}
-                  alt={`${option.name} logo`}
+                  alt=""
                   loading="eager"
                 />
               </div>
 
-              <div class="option-content">
-                <span class="option-name">
-                  {option.name}
-                </span>
-
-                <span class="option-description">
-                  {option.description}
-                </span>
-              </div>
-
-              <span
-                class="arrow"
-                aria-hidden="true"
-              >
-                ›
+              <span class="option-name">
+                {option.name}
               </span>
             </a>
           ))
         }
       </div>
 
-<div class="privacy-note">
-  <strong>Want this file to stay between us?</strong>
-  <span>
-    Encrypt it with my 
-    <a
-      href="https://nixie.online/pgp"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      PGP key 
-    </a>
-    before uploading.
-  </span>
-</div>
+      <div class="privacy-note">
+        <div
+          class="privacy-icon"
+          aria-hidden="true"
+        >
+          🔒
+        </div>
+
+        <div class="privacy-content">
+          <strong>Sending something private?</strong>
+
+          <p>
+            These upload services are operated by third parties.
+            If you want the contents of your file to remain private
+            between you and me, encrypt the file with my
+            <a
+              href="https://nixie.online/pgp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              PGP public key
+            </a>
+            before uploading it. This means the upload provider receives
+            the encrypted file rather than the readable contents.
+          </p>
+        </div>
+      </div>
 
       <p class="notice">
-        Select whichever service is most convenient for you.
-        You only need to upload your file once.
+        Choose whichever service works best for you.
+        You only need to upload the file once.
       </p>
     </main>
   </body>
